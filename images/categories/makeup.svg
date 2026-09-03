@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="صورة توضيحية">
+  <defs>
+    <linearGradient id="bgmakeup" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FBEDF2"/>
+      <stop offset="100%" stop-color="#EDC4D3"/>
+    </linearGradient>
+    <linearGradient id="objmakeup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#B78A9B" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#7F5867" stop-opacity="0.72"/>
+    </linearGradient>
+    <radialGradient id="glowmakeup" cx="50%" cy="38%" r="52%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bgmakeup)"/>
+  <circle cx="400" cy="330" r="250" fill="url(#glowmakeup)"/>
+  <path d="M356 168 h88 v104 h-88 z" fill="#C9A86A" opacity="0.9"/>
+  <path d="M356 168 q44 -52 88 0 z" fill="#A88948"/>
+  <rect x="334" y="272" width="132" height="70" rx="12" fill="#FFFFFF" opacity="0.55"/>
+  <rect x="330" y="342" width="140" height="266" rx="26" fill="url(#objmakeup)"/>
+  <ellipse cx="400" cy="682" rx="150" ry="20" fill="#3B2B2F" opacity="0.10"/>
+  <text x="400" y="754" text-anchor="middle" font-family="Segoe UI, Tahoma, sans-serif"
+        font-size="26" letter-spacing="9" fill="#3B2B2F" opacity="0.38">VOUTIQUE</text>
+</svg>

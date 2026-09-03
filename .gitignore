@@ -1,0 +1,27 @@
+# التبعيات
+node_modules/
+
+# ناتج البناء
+dist/
+dist-ssr/
+.vite/
+*.tsbuildinfo
+
+# السجلات
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# المحرر ونظام التشغيل
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# مؤقت
+tmp/
+temp/
