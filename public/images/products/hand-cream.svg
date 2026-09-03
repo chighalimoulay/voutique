@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="صورة توضيحية">
+  <defs>
+    <linearGradient id="bghandcream" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAF4F6"/>
+      <stop offset="100%" stop-color="#EBD8DF"/>
+    </linearGradient>
+    <linearGradient id="objhandcream" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="55%" stop-color="#B78A9B" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#7F5867" stop-opacity="0.72"/>
+    </linearGradient>
+    <radialGradient id="glowhandcream" cx="50%" cy="38%" r="52%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#bghandcream)"/>
+  <circle cx="400" cy="330" r="250" fill="url(#glowhandcream)"/>
+  <rect x="366" y="140" width="68" height="56" rx="10" fill="#C9A86A" opacity="0.88"/>
+  <path d="M336 200 h128 l26 92 v272 a54 54 0 0 1-54 54 H364 a54 54 0 0 1-54-54 V292 z" fill="url(#objhandcream)"/>
+  <rect x="352" y="366" width="96" height="126" rx="12" fill="#FFFFFF" opacity="0.32"/>
+  <ellipse cx="400" cy="682" rx="150" ry="20" fill="#3B2B2F" opacity="0.10"/>
+  <text x="400" y="754" text-anchor="middle" font-family="Segoe UI, Tahoma, sans-serif"
+        font-size="26" letter-spacing="9" fill="#3B2B2F" opacity="0.38">VOUTIQUE</text>
+</svg>
