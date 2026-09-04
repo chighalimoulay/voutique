@@ -4,38 +4,40 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ── هوية Mauve Elegance ──
+        // ── هوية Olive & Blush (زيتوني ووردي) ──
+        // مفاتيح التوكِن (mauve/softpink/...) أُبقيت كما هي حتى تنعكس القيم
+        // الجديدة تلقائيًا على كل مكوّن في الموقع دون تعديل أي ملف آخر.
         mauve: {
-          DEFAULT: '#B78A9B',
-          50: '#FBF6F8',
-          100: '#F5EAEF',
-          200: '#EBD6DF',
-          300: '#DDBBC9',
-          400: '#CBA1B3',
-          500: '#B78A9B',
-          600: '#9E6F81',
-          700: '#7F5867',
-          800: '#5F424E',
-          900: '#412D36',
+          DEFAULT: '#A3A847', // اللون الأساسي — أخضر زيتوني فاتح
+          50: '#F7F8EC',
+          100: '#EEF0D3',
+          200: '#DCE1AC',
+          300: '#C7CE83',
+          400: '#B3BB61',
+          500: '#A3A847',
+          600: '#888C3B',
+          700: '#6C6F2F',
+          800: '#515322',
+          900: '#383A17',
         },
         softpink: {
-          DEFAULT: '#E8C9D4',
-          light: '#F4E4EA',
-          dark: '#D9AFBF',
+          DEFAULT: '#F5C6D6', // اللون الثانوي — وردي فاتح
+          light: '#FCE6EE',
+          dark: '#E7A3BE',
         },
         cream: {
-          DEFAULT: '#FAF7F4',
-          dark: '#F2EBE5',
+          DEFAULT: '#FAFAF1', // خلفية عامة بلمسة زيتونية دافئة تحافظ على وضوح القراءة
+          dark: '#F1F1DF',
         },
         ink: {
-          DEFAULT: '#3B2B2F',
-          soft: '#6B565B',
-          muted: '#9B8A8E',
+          DEFAULT: '#4A1F35', // العناوين والنصوص البارزة — وردي غامق
+          soft: '#7A4A5E',
+          muted: '#A9808F',
         },
         gold: {
-          DEFAULT: '#C9A86A',
-          light: '#E0C894',
-          dark: '#A88948',
+          DEFAULT: '#D9C48C', // لمسة ذهبية فاتحة مساعدة
+          light: '#ECE0BA',
+          dark: '#B99D5E',
         },
       },
       fontFamily: {
@@ -48,10 +50,11 @@ export default {
         '3xl': '1.75rem',
       },
       boxShadow: {
-        soft: '0 2px 12px -4px rgba(59, 43, 47, 0.10)',
-        card: '0 8px 28px -12px rgba(59, 43, 47, 0.16)',
-        lift: '0 18px 44px -18px rgba(59, 43, 47, 0.28)',
-        gold: '0 8px 24px -12px rgba(201, 168, 106, 0.55)',
+        // مبنية على ink (#4A1F35) و gold (#D9C48C) — حدّثيها إن غيّرتِ هذين التوكِنين
+        soft: '0 2px 12px -4px rgba(74, 31, 53, 0.10)',
+        card: '0 8px 28px -12px rgba(74, 31, 53, 0.16)',
+        lift: '0 18px 44px -18px rgba(74, 31, 53, 0.28)',
+        gold: '0 8px 24px -12px rgba(217, 196, 140, 0.55)',
       },
       keyframes: {
         'fade-up': {
