@@ -562,6 +562,7 @@ export const products: Product[] = [
     brand: 'Feather',
     gender: 'women',
     image: '/images/products/flamingos-razors.jpeg',
+    featured: true,
     available: true,
   },
   {
@@ -577,6 +578,7 @@ export const products: Product[] = [
     gender: 'unisex',
     image: '/images/products/vaseline-vitamin-b3.jpeg',
     badge: 'new',
+    featured: true,
     available: true,
     size: '200 مل',
   },
@@ -626,6 +628,25 @@ export const pendingProducts: Product[] = [
 /** صورة بديلة تُستخدم إن لم تتوفر صورة المنتج. */
 export const PLACEHOLDER_IMAGE = '/images/products/placeholder.svg';
 
+/**
+ * هل للمنتج صورة حقيقية؟
+ *
+ * الصور التوضيحية المؤقتة كلها بصيغة SVG داخل public/images/products/،
+ * أما صور المنتجات الفعلية فهي jpg/jpeg/png/webp. نستخدم هذا للتمييز
+ * حتى تتصدّر المنتجات المصوَّرة فعليًا واجهة المتجر.
+ *
+ * بمجرد استبدال كل الصور التوضيحية بصور حقيقية، تصبح النتيجة true
+ * للجميع ويعود الترتيب إلى معياره الطبيعي دون أي تعديل في الكود.
+ */
+export function hasRealPhoto(product: Product): boolean {
+  return Boolean(product.image) && !product.image.toLowerCase().endsWith('.svg');
+}
+
+/** يقدّم المنتجات المصوَّرة فعليًا مع الحفاظ على الترتيب الأصلي داخل كل مجموعة. */
+export function photosFirst(list: Product[]): Product[] {
+  return [...list].sort((a, b) => Number(hasRealPhoto(b)) - Number(hasRealPhoto(a)));
+}
+
 const productsBySlug = new Map(products.map((product) => [product.slug, product]));
 const productsById = new Map(products.map((product) => [product.id, product]));
 
@@ -638,25 +659,25 @@ export function getProductById(id: string): Product | undefined {
 }
 
 export function getFeaturedProducts(limit = 8): Product[] {
-  return products.filter((product) => product.featured).slice(0, limit);
+  return photosFirst(products.filter((product) => product.featured)).slice(0, limit);
 }
 
 export function getBestSellers(limit = 8): Product[] {
-  return products.filter((product) => product.bestSeller).slice(0, limit);
+  return photosFirst(products.filter((product) => product.bestSeller)).slice(0, limit);
 }
 
 export function getNewArrivals(limit = 8): Product[] {
-  return products.filter((product) => product.badge === 'new').slice(0, limit);
+  return photosFirst(products.filter((product) => product.badge === 'new')).slice(0, limit);
 }
 
 export function getByCategory(categorySlug: string): Product[] {
-  return products.filter((product) => product.category === categorySlug);
+  return photosFirst(products.filter((product) => product.category === categorySlug));
 }
 
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
-  return products
-    .filter((item) => item.category === product.category && item.id !== product.id)
-    .slice(0, limit);
+  return photosFirst(
+    products.filter((item) => item.category === product.category && item.id !== product.id),
+  ).slice(0, limit);
 }
 
 /** أعلى سعر في الكتالوج — يُستخدم لضبط مرشّح السعر. */

@@ -44,7 +44,7 @@ export const storeConfig: StoreConfig = {
   whatsappNumber: '22222081656',
   // ⬆⬆⬆  ─────────────────────────────────────────────  ⬆⬆⬆
 
-  phone: '+22222081657',
+  phone: '+222 22 08 16 56',
   email: 'chighalimoulaye@gmail.com',
   address: 'نواكشوط — موريتانيا',
   workingHours: 'السبت — الخميس، من 9 صباحًا إلى 8 مساءً',

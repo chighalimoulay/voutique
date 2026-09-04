@@ -1,4 +1,5 @@
 import { getCategoryName } from '@/data/categories';
+import { hasRealPhoto } from '@/data/products';
 import type { Product, ShopFilters, SortKey } from '@/types';
 
 /**
@@ -45,8 +46,15 @@ export function searchProducts(list: Product[], query: string): Product[] {
   });
 }
 
+/**
+ * الترتيب الافتراضي وترتيب «الأحدث» يقدّمان المنتجات المصوَّرة فعليًا،
+ * لأن صدارة الواجهة بمنتجات ذات صور توضيحية تُضعف انطباع المتجر.
+ * أما إذا اختارت العميلة ترتيبًا صريحًا (السعر أو الاسم) فنحترمه كاملًا
+ * ولا نتدخّل فيه.
+ */
 function sortProducts(list: Product[], sort: SortKey): Product[] {
   const sorted = [...list];
+  const photo = (product: Product) => Number(hasRealPhoto(product));
 
   switch (sort) {
     case 'price_asc':
@@ -56,14 +64,15 @@ function sortProducts(list: Product[], sort: SortKey): Product[] {
     case 'name':
       return sorted.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
     case 'newest':
-      // «الجديد» أولًا ثم بقية المنتجات بترتيب الملف
+      // «الجديد» أولًا، ثم المصوَّر فعليًا، ثم بقية المنتجات بترتيب الملف
       return sorted.sort(
-        (a, b) => Number(b.badge === 'new') - Number(a.badge === 'new'),
+        (a, b) =>
+          Number(b.badge === 'new') - Number(a.badge === 'new') || photo(b) - photo(a),
       );
     case 'featured':
     default:
       return sorted.sort(
-        (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
+        (a, b) => photo(b) - photo(a) || Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
       );
   }
 }
