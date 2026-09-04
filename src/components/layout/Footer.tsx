@@ -28,9 +28,13 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* العلامة */}
           <div className="lg:col-span-1">
-            <span className="font-display text-2xl font-bold tracking-[0.28em] text-ink">
-              {storeConfig.name}
-            </span>
+            <Link
+              to="/"
+              aria-label={`${storeConfig.name} — الصفحة الرئيسية`}
+              className="inline-block transition-transform duration-300 ease-silk hover:scale-105"
+            >
+              <img src="/logo.png" alt={storeConfig.name} className="h-9 w-auto" />
+            </Link>
             <p className="mt-3 text-sm text-mauve-600">{storeConfig.tagline}</p>
             <p className="mt-3 max-w-xs text-sm leading-7 text-ink-soft">
               {storeConfig.description}

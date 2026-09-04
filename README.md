@@ -379,7 +379,9 @@ voutique/
 │   │   ├── products/          ← صور المنتجات (ضعي صورك هنا)
 │   │   ├── categories/        ← صور التصنيفات
 │   │   └── og-cover.svg       ← صورة المشاركة على وسائل التواصل
-│   ├── favicon.svg
+│   ├── logo.png                ← شعار المتجر (هيدر + فوتر)
+│   ├── logo-icon.png           ← الشعار بلا نص (أساس أيقونة المتصفح)
+│   ├── favicon-32.png / favicon-192.png
 │   ├── robots.txt
 │   └── _redirects             ← إعادة توجيه SPA لـ Netlify
 │
