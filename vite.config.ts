@@ -2,7 +2,11 @@ import path from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  // GitHub Pages تُقدَّم من مسار فرعي (username.github.io/voutique/)، بينما
+  // Netlify/Vercel تُقدَّم من الجذر. الوضع gh-pages (عبر npm run deploy)
+  // هو الوحيد الذي يستخدم المسار الفرعي؛ npm run build العادي يبقى بالجذر.
+  base: mode === 'gh-pages' ? '/voutique/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -31,4 +35,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

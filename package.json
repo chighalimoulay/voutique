@@ -12,7 +12,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false",
-    "lint": "eslint . --ext ts,tsx --max-warnings 0"
+    "lint": "eslint . --ext ts,tsx --max-warnings 0",
+    "predeploy": "tsc -b && vite build --mode gh-pages && node scripts/copy-404.mjs",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "11.15.0",
@@ -22,8 +24,8 @@
     "react-router-dom": "7.18.3"
   },
   "devDependencies": {
-    "@types/react": "18.3.18",
     "@types/node": "22.10.2",
+    "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "@typescript-eslint/eslint-plugin": "8.18.1",
     "@typescript-eslint/parser": "8.18.1",
@@ -32,6 +34,7 @@
     "eslint": "8.57.1",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-react-refresh": "0.4.16",
+    "gh-pages": "^6.3.0",
     "postcss": "8.5.28",
     "tailwindcss": "3.4.17",
     "typescript": "5.7.2",
