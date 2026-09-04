@@ -534,16 +534,16 @@ export const products: Product[] = [
 
   {
     id: 'p-031',
-    name: 'بخاخ الحماية من الحرارة',
+    name: 'الواقي الحراري للشعر',
     slug: 'tresemme-heat-protecting-spray',
-    shortDescription: 'يحمي الشعر حتى 450°F قبل استخدام المكواة والسيشوار.',
+    shortDescription: 'حماية من حرارة الاستشوار وأدوات التصفيف حتى 450°F.',
     description:
       'بخاخ تصفيف يحمي الشعر من حرارة أدوات التصفيف حتى 450 درجة فهرنهايت، ويعمل كأساس (Primer) قبل التصفيف لتقليل التقصف والتكسر. يُرش على الشعر الرطب أو الجاف قبل استخدام المكواة أو السيشوار، ويترك الشعر ناعمًا ولامعًا دون ثقل.',
     price: 600,
     category: 'care',
     brand: 'TRESemmé',
     gender: 'women',
-    image: '/images/products/heat-protecting-spray.jpeg',
+    image: '/images/products/tresemme-heat-spray.jpeg',
     badge: 'new',
     featured: true,
     available: true,
@@ -552,17 +552,33 @@ export const products: Product[] = [
 
   {
     id: 'p-034',
-    name: 'مقص فلامينجوس لإزالة الشعر',
+    name: 'شفرات فلامينجو النسائية لإزالة الشعر',
     slug: 'feather-flamingos-razor',
     shortDescription: 'أداة آمنة لإزالة شعر الوجه والجسم مع حماية للبشرة.',
     description:
-      'مقص Feather Flamingos لإزالة شعر الوجه والجسم بأمان، مزوّد بحارس أمان يحمي البشرة أثناء الاستخدام.',
+      'شفرات Feather Flamingos لإزالة شعر الوجه والجسم بأمان، مزوّدة بحارس أمان يحمي البشرة أثناء الاستخدام.',
     price: 120,
     category: 'care',
     brand: 'Feather',
     gender: 'women',
-    image: '/images/products/feather-flamingos-razor.jpg',
+    image: '/images/products/flamingos-razors.jpeg',
     available: true,
+  },
+  {
+    id: 'p-033',
+    name: 'زيت فازلين لتوحيد لون البشرة وترطيبها',
+    slug: 'vaseline-vitamin-b3-body-oil',
+    shortDescription: 'زيت مرطب للجسم يوحّد لون البشرة ويمنحها إشراقة صحية.',
+    description:
+      'زيت جسم مكثف العناية من فازلين، مدعّم بفيتامين B3، ينعّم البشرة ويوحّد لونها ويمنحها إشراقة صحية.',
+    price: 320,
+    category: 'care',
+    brand: 'Vaseline',
+    gender: 'unisex',
+    image: '/images/products/vaseline-vitamin-b3.jpeg',
+    badge: 'new',
+    available: true,
+    size: '200 مل',
   },
 ];
 
@@ -589,21 +605,6 @@ export const pendingProducts: Product[] = [
     image: '/images/products/zara-twilight-mauve.jpg',
     available: true,
     size: '250 مل / 8.4 fl.oz',
-  },
-  {
-    id: 'p-033',
-    name: 'زيت جسم فازلين فيتامين B3',
-    slug: 'vaseline-vitamin-b3-body-oil',
-    shortDescription: 'زيت مرطب للجسم يوحّد لون البشرة ويمنحها إشراقة صحية.',
-    description:
-      'زيت جسم مكثف العناية من فازلين، مدعّم بفيتامين B3، ينعّم البشرة ويوحّد لونها.',
-    price: 0, // ⚠️ TODO: أدخلي السعر
-    category: 'care',
-    brand: 'Vaseline',
-    gender: 'unisex',
-    image: '/images/products/vaseline-vitamin-b3-body-oil.jpg',
-    available: true,
-    size: '200 مل',
   },
   {
     id: 'p-035',
