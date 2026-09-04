@@ -426,7 +426,7 @@ voutique/
 │
 ├── index.html
 ├── package.json
-├── tailwind.config.js         ← ألوان Mauve Elegance
+├── tailwind.config.js         ← ألوان Olive & Blush (زيتوني ووردي)
 └── vite.config.ts
 ```
 
