@@ -83,7 +83,7 @@ export default function ExternalOrderPage() {
   return (
     <>
       <Seo
-        title="اطلبي من الخارج"
+        title="اطلبي من المواقع"
         description="أرسلي لنا رابط المنتج من SHEIN أو Noon أو Temu أو Amazon أو AliExpress وسنتولى مساعدتك في طلبه."
       />
 
@@ -95,7 +95,7 @@ export default function ExternalOrderPage() {
             خدمة الشراء من الخارج
           </span>
 
-          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">اطلبي من الخارج</h1>
+          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">اطلبي من المواقع</h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-8 text-ink-soft">
             لم تجدي ما تبحثين عنه؟ أرسلي لنا رابط المنتج من{' '}

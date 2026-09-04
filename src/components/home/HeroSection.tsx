@@ -58,7 +58,7 @@ export function HeroSection() {
 
               <ButtonLink to="/external-order" size="lg" variant="outline">
                 <Globe2 className="h-4 w-4" aria-hidden="true" />
-                اطلبي من الخارج
+                اطلبي من المواقع
               </ButtonLink>
             </div>
 

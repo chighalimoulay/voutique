@@ -11,7 +11,7 @@ export const mainNav: NavLinkItem[] = [
   { label: 'العناية', to: '/category/care' },
   { label: 'التجميل', to: '/category/makeup' },
   { label: 'الهدايا', to: '/category/gifts' },
-  { label: 'اطلبي من الخارج', to: '/external-order' },
+  { label: 'اطلبي من المواقع', to: '/external-order' },
 ];
 
 export const footerShopLinks: NavLinkItem[] = [
@@ -25,7 +25,7 @@ export const footerShopLinks: NavLinkItem[] = [
 ];
 
 export const footerServiceLinks: NavLinkItem[] = [
-  { label: 'اطلبي من الخارج', to: '/external-order' },
+  { label: 'اطلبي من المواقع', to: '/external-order' },
   { label: 'المفضلة', to: '/wishlist' },
   { label: 'السلة', to: '/cart' },
   { label: 'تواصلي معنا', to: '/contact' },

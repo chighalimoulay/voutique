@@ -29,7 +29,7 @@ export interface StoreConfig {
   currency: string;
   currencyNameAr: string;
   social: SocialLink[];
-  /** يظهر في صفحة «اطلبي من الخارج». */
+  /** يظهر في صفحة «اطلبي من المواقع». */
   externalSites: string[];
   freeShippingFrom: number | null;
 }
@@ -45,7 +45,7 @@ export const storeConfig: StoreConfig = {
   // ⬆⬆⬆  ─────────────────────────────────────────────  ⬆⬆⬆
 
   phone: '+222 22 08 16 56',
-  email: 'chighalimoulaye@gmail.com',
+  email: 'voutique1@gmail.com',
   address: 'نواكشوط — موريتانيا',
   workingHours: 'السبت — الخميس، من 9 صباحًا إلى 8 مساءً',
 
