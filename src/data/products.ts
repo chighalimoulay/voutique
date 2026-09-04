@@ -550,9 +550,31 @@ export const products: Product[] = [
     ingredients: 'ماء، بوليمرات واقية من الحرارة، مرطبات، عطر.',
   },
 
-  // ⚠️⚠️ المنتجات التالية ناقصة السعر (price: 0) — تظهر للعميلة بـ«0 أوقية».
-  //      ضعي السعر الحقيقي قبل عرض الموقع على أي أحد.
-  //      كما أن صورها لم تصل بعد، لذا تظهر الصورة البديلة مؤقتًا.
+  {
+    id: 'p-034',
+    name: 'مقص فلامينجوس لإزالة الشعر',
+    slug: 'feather-flamingos-razor',
+    shortDescription: 'أداة آمنة لإزالة شعر الوجه والجسم مع حماية للبشرة.',
+    description:
+      'مقص Feather Flamingos لإزالة شعر الوجه والجسم بأمان، مزوّد بحارس أمان يحمي البشرة أثناء الاستخدام.',
+    price: 120,
+    category: 'care',
+    brand: 'Feather',
+    gender: 'women',
+    image: '/images/products/feather-flamingos-razor.jpg',
+    available: true,
+  },
+];
+
+/**
+ * ══════════════════════════════════════════════════════════════════
+ *  منتجات بانتظار السعر — غير معروضة في المتجر حاليًا
+ *
+ *  لإظهار أحد هذه المنتجات: انسخي كائنه إلى المصفوفة `products` أعلاه
+ *  (قبل `];` مباشرة)، وعدّلي price من 0 إلى السعر الحقيقي.
+ * ══════════════════════════════════════════════════════════════════
+ */
+export const pendingProducts: Product[] = [
   {
     id: 'p-032',
     name: 'بخاخ زارا Twilight Mauve المنعش',
@@ -582,20 +604,6 @@ export const products: Product[] = [
     image: '/images/products/vaseline-vitamin-b3-body-oil.jpg',
     available: true,
     size: '200 مل',
-  },
-  {
-    id: 'p-034',
-    name: 'مقص فلامينجوس لإزالة الشعر',
-    slug: 'feather-flamingos-razor',
-    shortDescription: 'أداة آمنة لإزالة شعر الوجه والجسم مع حماية للبشرة.',
-    description:
-      'مقص Feather Flamingos لإزالة شعر الوجه والجسم بأمان، مزوّد بحارس أمان يحمي البشرة أثناء الاستخدام.',
-    price: 120,
-    category: 'care',
-    brand: 'Feather',
-    gender: 'women',
-    image: '/images/products/feather-flamingos-razor.jpg',
-    available: true,
   },
   {
     id: 'p-035',
