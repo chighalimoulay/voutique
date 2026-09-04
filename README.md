@@ -306,23 +306,58 @@ npm run preview
 
 ## 10. نشر الموقع
 
-الموقع **ثابت بالكامل** (HTML + CSS + JS فقط)، فينشر مجانًا على أي من هذه الخدمات:
+الموقع **ثابت بالكامل** (HTML + CSS + JS فقط)، فينشر مجانًا على أي من هذه الخدمات.
+
+### الروابط الحالية للمشروع
+
+| الرابط | الاستضافة | التحديث |
+| --- | --- | --- |
+| **<https://voutique-mr.netlify.app>** | Netlify (الرابط الرئيسي الموصى به) | تلقائي مع كل `git push` إلى `main` |
+| <https://chighalimoulay.github.io/voutique/> | GitHub Pages (نسخة احتياطية) | يدوي عبر `npm run deploy` |
+
+المستودع: <https://github.com/chighalimoulay/voutique>
+
+### Netlify — النشر التلقائي (مُفعَّل حاليًا)
+
+المشروع مربوط بمستودع GitHub، فأي `git push` إلى `main` يُشغّل بناءً
+ونشرًا تلقائيًا خلال دقيقة تقريبًا. إعدادات البناء موجودة في `netlify.toml`
+(الأمر `npm run build`، مجلد النشر `dist`).
+
+للنشر اليدوي من جهازك مباشرة دون انتظار GitHub:
+
+```bash
+netlify deploy --prod
+```
+
+> ⚠️ إن ظهرت رسالة «This site is private» عند فتح الرابط، فهذا إعداد
+> **Team protection** في حساب Netlify (قد يُعاد تفعيله عند ربط مستودع جديد).
+> عطّليه من: Team settings ← Team protection، أو من Site settings ← Visitor access.
+
+### GitHub Pages — نشر يدوي
+
+```bash
+npm run deploy
+```
+
+يبني الموقع بمسار `/voutique/` الفرعي تلقائيًا (`vite.config.ts` يضبط
+`base` حسب نمط البناء) وينشئ `404.html` لدعم التوجيه من جهة العميل.
+
+### خدمات أخرى
 
 | الخدمة | الطريقة |
 | --- | --- |
-| **Netlify** | اسحبي مجلد `dist` إلى <https://app.netlify.com/drop> |
 | **Vercel** | `Build Command: npm run build` — `Output Directory: dist` |
 | **Cloudflare Pages** | نفس إعدادات Vercel |
-| **GitHub Pages** | ارفعي محتوى `dist` إلى فرع `gh-pages` |
 
 ### مهم: إعادة توجيه المسارات (SPA)
 
 الموقع يستخدم مسارات مثل `/product/luxury-rose-perfume`. عند فتح هذا الرابط
 مباشرة، يجب أن تُرجع الاستضافة ملف `index.html`، وإلا ظهر خطأ 404.
 
-- **Netlify / Cloudflare Pages**: مضبوط تلقائيًا عبر ملف `public/_redirects`.
-- **Vercel**: يتعرّف على مشاريع Vite تلقائيًا.
-- **GitHub Pages**: انسخي `dist/index.html` إلى `dist/404.html` بعد البناء.
+- **Netlify**: مضبوط تلقائيًا عبر `netlify.toml` و `public/_redirects`.
+- **Vercel / Cloudflare Pages**: يتعرّفان على مشاريع Vite تلقائيًا.
+- **GitHub Pages**: `npm run deploy` ينشئ `dist/404.html` تلقائيًا (عبر
+  `scripts/copy-404.mjs`) — لا حاجة لأي خطوة يدوية.
 - **استضافة عادية (Apache)**: أضيفي ملف `.htaccess`:
   ```apache
   RewriteEngine On
