@@ -25,3 +25,6 @@ desktop.ini
 # مؤقت
 tmp/
 temp/
+
+# Local Netlify folder
+.netlify

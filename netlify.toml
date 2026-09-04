@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# مسارات SPA: أي رابط غير موجود كملف فعلي يُعاد توجيهه إلى index.html
+# ليتولّى React Router عرض الصفحة الصحيحة من جهة العميل.
+# (نفس الغرض من public/_redirects — موجود هنا أيضًا لضمان الالتقاط
+#  حتى لو تغيّر مجلد publish مستقبلًا)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
