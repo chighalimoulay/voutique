@@ -815,6 +815,51 @@ export const products: Product[] = [
     available: true,
     size: '250 مل / 8.4 fl.oz',
   },
+  {
+    id: 'p-052',
+    name: 'عطر فخر لطافة الرجالي',
+    slug: 'fakhar-lattafa-eau-de-parfum',
+    shortDescription: 'أو دي بارفيوم رجالي فاخر بثبات عالٍ من Lattafa.',
+    description:
+      'Fakhar Lattafa أو دي بارفيوم رجالي فاخر بعبوة فضية أنيقة، رائحة قوية وثبات عالٍ يناسب الاستخدام اليومي والمناسبات.',
+    price: 2900,
+    category: 'perfumes-men',
+    brand: 'Lattafa',
+    gender: 'men',
+    image: '/images/products/fakhar-lattafa.jpg',
+    available: true,
+    size: '100 مل',
+  },
+  {
+    id: 'p-053',
+    name: 'الحناء الموريتاني',
+    slug: 'mauritanian-henna',
+    shortDescription: 'حناء طبيعية 100% للشعر — السعر لكل كيلوغرام.',
+    description:
+      'حناء موريتانية طبيعية 100% تُستخدم للعناية بالشعر وصبغه، بنعومة طحن عالية ونقاء تام بلا إضافات.',
+    price: 350,
+    category: 'care',
+    brand: 'موريتاني',
+    gender: 'women',
+    image: '/images/products/hanna-mauritania.jpg',
+    available: true,
+    size: 'السعر لكل كيلوغرام',
+  },
+  {
+    id: 'p-054',
+    name: 'الحلوة الموريتانية لإزالة الشعر',
+    slug: 'mauritanian-sugar-wax',
+    shortDescription: 'حلاوة طبيعية 100% لإزالة الشعر — السعر للقطعة الواحدة.',
+    description:
+      'الحلوة الموريتانية لإزالة الشعر — معجون طبيعي 100% بطريقة تقليدية، يُزيل الشعر من جذوره ويترك البشرة ناعمة.',
+    price: 10,
+    category: 'care',
+    brand: 'موريتاني',
+    gender: 'women',
+    image: '/images/products/halawa-shaar.jpg',
+    available: true,
+    size: 'السعر للقطعة الواحدة',
+  },
 ];
 
 /**
