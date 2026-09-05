@@ -26,7 +26,7 @@ export const categories: Category[] = [
     slug: 'care',
     name: 'العناية',
     description: 'روتين متكامل للعناية بالبشرة والشعر والجسم.',
-    image: '/images/categories/care.svg',
+    image: '/images/categories/care.jpg',
     icon: 'Droplet',
     order: 3,
   },
