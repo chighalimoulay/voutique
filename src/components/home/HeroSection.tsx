@@ -97,8 +97,8 @@ function HeroVisual() {
     >
       <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-white/60 bg-white/40 shadow-lift backdrop-blur-sm">
         <img
-          src="/images/products/rose-perfume.svg"
-          alt="عطر ورد فاخر من مختارات VOUTIQUE"
+          src="/images/voutique-hero-gift.jpg"
+          alt="مجموعة هدايا VOUTIQUE — عطور وعلب مغلّفة"
           className="h-full w-full object-cover"
           loading="eager"
           decoding="async"
