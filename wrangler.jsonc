@@ -1,0 +1,13 @@
+{
+  // إعداد نشر Cloudflare Workers/Pages لموقع VOUTIQUE (Vite SPA ثابت).
+  // not_found_handling يجعل أي مسار غير موجود كملف فعلي يُعرض عبر
+  // index.html ليتولّى React Router التوجيه من جهة العميل — بديل
+  // public/_redirects الذي يرفضه محرك Workers Static Assets الحديث
+  // بخطأ "infinite loop" بسبب معالجته التلقائية لملفات HTML.
+  "name": "voutique",
+  "compatibility_date": "2024-09-23",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
