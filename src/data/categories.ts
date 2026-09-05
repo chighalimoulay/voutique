@@ -18,7 +18,7 @@ export const categories: Category[] = [
     slug: 'perfumes-men',
     name: 'العطور الرجالية',
     description: 'عطور رجالية كلاسيكية وعصرية بثبات عالٍ وحضور مميز.',
-    image: '/images/categories/perfumes-men.svg',
+    image: '/images/products/dior-homme-fragrance-for-man.jpeg',
     icon: 'Wind',
     order: 2,
   },
