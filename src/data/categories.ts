@@ -42,7 +42,7 @@ export const categories: Category[] = [
     slug: 'hygiene',
     name: 'النظافة والجمال',
     description: 'أساسيات النظافة والعناية الشخصية اليومية.',
-    image: '/images/categories/hygiene.svg',
+    image: '/images/categories/hygiene.jpg',
     icon: 'ShieldCheck',
     order: 5,
   },
