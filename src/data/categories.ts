@@ -34,7 +34,7 @@ export const categories: Category[] = [
     slug: 'makeup',
     name: 'مستحضرات التجميل',
     description: 'مكياج بألوان ودرجات تناسب كل الإطلالات.',
-    image: '/images/categories/makeup.svg',
+    image: '/images/categories/makeup.jpg',
     icon: 'Palette',
     order: 4,
   },
