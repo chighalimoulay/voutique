@@ -50,7 +50,7 @@ export const categories: Category[] = [
     slug: 'gifts',
     name: 'الهدايا',
     description: 'مجموعات هدايا جاهزة ومغلّفة بعناية لكل المناسبات.',
-    image: '/images/categories/gifts.svg',
+    image: '/images/categories/gifts.jpg',
     icon: 'Gift',
     order: 6,
   },
