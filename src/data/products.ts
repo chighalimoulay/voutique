@@ -546,6 +546,7 @@ export const products: Product[] = [
     image: '/images/products/tresemme-heat-spray.jpeg',
     badge: 'new',
     featured: true,
+    bestSeller: true,
     available: true,
     ingredients: 'ماء، بوليمرات واقية من الحرارة، مرطبات، عطر.',
   },
@@ -579,6 +580,7 @@ export const products: Product[] = [
     image: '/images/products/vaseline-vitamin-b3.jpeg',
     badge: 'new',
     featured: true,
+    bestSeller: true,
     available: true,
     size: '200 مل',
   },
@@ -611,6 +613,7 @@ export const products: Product[] = [
     gender: 'women',
     image: '/images/products/pure-seduction.jpeg',
     featured: true,
+    bestSeller: true,
     available: true,
     size: '250 مل / 8.4 fl.oz',
   },
@@ -742,6 +745,7 @@ export const products: Product[] = [
     image: '/images/products/dior-homme-fragrance-for-man.jpeg',
     badge: 'limited',
     featured: true,
+    bestSeller: true,
     available: true,
   },
   {
@@ -872,16 +876,25 @@ export function getProductById(id: string): Product | undefined {
   return productsById.get(id);
 }
 
+/**
+ * الأقسام المُنسَّقة على الصفحة الرئيسية (مختارة لكِ، الأكثر مبيعًا، وصلنا حديثًا)
+ * تستبعد صور placeholder التوضيحية تمامًا بدل تأخيرها في الترتيب، حتى لا يظهر
+ * أي رسم SVG بينما توجد صور حقيقية كافية للملء.
+ */
 export function getFeaturedProducts(limit = 8): Product[] {
-  return photosFirst(products.filter((product) => product.featured)).slice(0, limit);
+  return products.filter((product) => product.featured && hasRealPhoto(product)).slice(0, limit);
 }
 
 export function getBestSellers(limit = 8): Product[] {
-  return photosFirst(products.filter((product) => product.bestSeller)).slice(0, limit);
+  return products
+    .filter((product) => product.bestSeller && hasRealPhoto(product))
+    .slice(0, limit);
 }
 
 export function getNewArrivals(limit = 8): Product[] {
-  return photosFirst(products.filter((product) => product.badge === 'new')).slice(0, limit);
+  return products
+    .filter((product) => product.badge === 'new' && hasRealPhoto(product))
+    .slice(0, limit);
 }
 
 export function getByCategory(categorySlug: string): Product[] {
