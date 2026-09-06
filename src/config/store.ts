@@ -50,7 +50,7 @@ export const storeConfig: StoreConfig = {
   workingHours: 'السبت — الخميس، من 9 صباحًا إلى 8 مساءً',
 
   currency: 'MRU',
-  currencyNameAr: 'أوقية جديدة',
+  currencyNameAr: 'MRU',
 
   social: [
     { key: 'instagram', label: 'إنستغرام', url: 'https://instagram.com/' },
