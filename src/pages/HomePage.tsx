@@ -5,9 +5,10 @@ import { HeroSection } from '@/components/home/HeroSection';
 import { ProductShowcase } from '@/components/home/ProductShowcase';
 import { Seo } from '@/components/Seo';
 import { storeConfig } from '@/config/store';
-import { getBestSellers, getByCategory, getFeaturedProducts } from '@/data/products';
+import { useCatalog } from '@/store/useCatalog';
 
 export default function HomePage() {
+  const { getBestSellers, getByCategory, getFeaturedProducts } = useCatalog();
   const featured = getFeaturedProducts(8);
   const bestSellers = getBestSellers(4);
   const perfumes = [...getByCategory('perfumes'), ...getByCategory('perfumes-men')].slice(0, 4);

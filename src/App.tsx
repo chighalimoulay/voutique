@@ -4,6 +4,8 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { Layout } from '@/components/layout/Layout';
 import { ToastViewport } from '@/components/ui/ToastViewport';
 import { CartProvider } from '@/store/CartProvider';
+import { ProductsProvider } from '@/store/ProductsProvider';
+import { SiteImagesProvider } from '@/store/SiteImagesProvider';
 import { ToastProvider } from '@/store/ToastProvider';
 import { WishlistProvider } from '@/store/WishlistProvider';
 import HomePage from '@/pages/HomePage';
@@ -21,6 +23,8 @@ const ExternalOrderPage = lazy(() => import('@/pages/ExternalOrderPage'));
 const ContactPage = lazy(() => import('@/pages/ContactPage'));
 const LegalPage = lazy(() => import('@/pages/LegalPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
+/** لوحة الإدارة: حزمة منفصلة تمامًا، لا تُحمَّل لزائرات المتجر. */
+const AdminApp = lazy(() => import('@/admin/AdminApp'));
 
 function PageFallback() {
   return (
@@ -47,106 +51,120 @@ export default function App() {
   return (
     <ErrorBoundary>
       <ToastProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <BrowserRouter basename={import.meta.env.BASE_URL}>
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route
-                    index
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <HomePage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="shop"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <ShopPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="category/:slug"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <CategoryPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="product/:slug"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <ProductPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="cart"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <CartPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="wishlist"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <WishlistPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="external-order"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <ExternalOrderPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="contact"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <ContactPage />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="privacy"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <LegalPage kind="privacy" />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="terms"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <LegalPage kind="terms" />
-                      </Suspense>
-                    }
-                  />
-                  <Route
-                    path="*"
-                    element={
-                      <Suspense fallback={<PageFallback />}>
-                        <NotFoundPage />
-                      </Suspense>
-                    }
-                  />
-                </Route>
-              </Routes>
+        <SiteImagesProvider>
+          <ProductsProvider>
+            <CartProvider>
+              <WishlistProvider>
+                <BrowserRouter basename={import.meta.env.BASE_URL}>
+                  <Routes>
+                    <Route element={<Layout />}>
+                      <Route
+                        index
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <HomePage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="shop"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <ShopPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="category/:slug"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <CategoryPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="product/:slug"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <ProductPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="cart"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <CartPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="wishlist"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <WishlistPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="external-order"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <ExternalOrderPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="contact"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <ContactPage />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="privacy"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <LegalPage kind="privacy" />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="terms"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <LegalPage kind="terms" />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="*"
+                        element={
+                          <Suspense fallback={<PageFallback />}>
+                            <NotFoundPage />
+                          </Suspense>
+                        }
+                      />
+                    </Route>
 
-              <ToastViewport />
-            </BrowserRouter>
-          </WishlistProvider>
-        </CartProvider>
+                    {/* خارج تخطيط المتجر: بلا ترويسة المتجر ولا زر واتساب العائم */}
+                    <Route
+                      path="admin/*"
+                      element={
+                        <Suspense fallback={<PageFallback />}>
+                          <AdminApp />
+                        </Suspense>
+                      }
+                    />
+                  </Routes>
+
+                  <ToastViewport />
+                </BrowserRouter>
+              </WishlistProvider>
+            </CartProvider>
+          </ProductsProvider>
+        </SiteImagesProvider>
       </ToastProvider>
     </ErrorBoundary>
   );

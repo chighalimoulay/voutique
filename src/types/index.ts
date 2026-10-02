@@ -40,6 +40,14 @@ export interface Product {
   options?: ProductOption[];
 }
 
+/** منتج كما تراه لوحة الإدارة — يشمل حالة النشر والترتيب. */
+export interface AdminProduct extends Product {
+  /** false = مخفي عن المتجر تمامًا (يختلف عن available الذي يمنع الطلب فقط). */
+  published: boolean;
+  sortOrder: number;
+  updatedAt?: string;
+}
+
 export interface Category {
   slug: string;
   name: string;

@@ -1,6 +1,6 @@
 import { RotateCcw } from 'lucide-react';
 import { categories } from '@/data/categories';
-import { MAX_PRODUCT_PRICE } from '@/data/products';
+import { useCatalog } from '@/store/useCatalog';
 import type { ShopFilters } from '@/types';
 import { formatPrice } from '@/utils/format';
 import { GENDER_OPTIONS } from '@/utils/search';
@@ -16,6 +16,7 @@ interface FilterPanelProps {
 const PRICE_STEP = 500;
 
 export function FilterPanel({ filters, onChange, onReset, hideCategory }: FilterPanelProps) {
+  const { maxPrice: MAX_PRODUCT_PRICE } = useCatalog();
   const maxPrice = filters.maxPrice ?? MAX_PRODUCT_PRICE;
 
   return (

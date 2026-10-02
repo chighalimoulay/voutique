@@ -5,7 +5,7 @@ import { ProductGrid } from '@/components/product/ProductGrid';
 import { Seo } from '@/components/Seo';
 import { FilterPanel } from '@/components/shop/FilterPanel';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
-import { products } from '@/data/products';
+import { useCatalog } from '@/store/useCatalog';
 import type { ShopFilters, SortKey } from '@/types';
 import { applyFilters, DEFAULT_FILTERS, SORT_OPTIONS } from '@/utils/search';
 
@@ -14,6 +14,7 @@ const SORT_VALUES = SORT_OPTIONS.map((option) => option.value);
 export default function ShopPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const { products } = useCatalog();
 
   useBodyScrollLock(mobileFiltersOpen);
 
@@ -59,7 +60,7 @@ export default function ShopPage() {
     setSearchParams(new URLSearchParams(), { replace: true });
   }, [setSearchParams]);
 
-  const results = useMemo(() => applyFilters(products, filters), [filters]);
+  const results = useMemo(() => applyFilters(products, filters), [products, filters]);
 
   const activeCount =
     (filters.category !== 'all' ? 1 : 0) +

@@ -1,8 +1,8 @@
 import { useCallback, useMemo, type ReactNode } from 'react';
-import { getProductById } from '@/data/products';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import type { CartItem, Product, ResolvedCartItem } from '@/types';
 import { buildCartKey, CartContext, type CartContextValue } from './cart-context';
+import { useCatalog } from './useCatalog';
 
 const STORAGE_KEY = 'voutique:cart:v1';
 const MAX_QUANTITY = 99;
@@ -26,6 +26,7 @@ function isCartItemArray(value: unknown): value is CartItem[] {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useLocalStorage<CartItem[]>(STORAGE_KEY, [], isCartItemArray);
+  const { getProductById } = useCatalog();
 
   const addItem = useCallback(
     (product: Product, quantity = 1, selectedOptions: Record<string, string> = {}) => {
@@ -108,7 +109,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
 
     return resolved;
-  }, [items]);
+  }, [items, getProductById]);
 
   const totalQuantity = useMemo(
     () => resolvedItems.reduce((sum, item) => sum + item.quantity, 0),

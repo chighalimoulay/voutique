@@ -10,37 +10,25 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { QuantityInput } from '@/components/ui/QuantityInput';
 import { storeConfig } from '@/config/store';
 import { getCategoryName } from '@/data/categories';
-import { getProductBySlug, getRelatedProducts } from '@/data/products';
 import { useCart } from '@/store/useCart';
+import { useCatalog } from '@/store/useCatalog';
 import { useToast } from '@/store/useToast';
 import { useWishlist } from '@/store/useWishlist';
+import type { Product } from '@/types';
 import { cn } from '@/utils/cn';
 import { discountPercent, formatPrice } from '@/utils/format';
 import { createProductOrderMessage, openWhatsApp } from '@/utils/whatsapp';
 
 export default function ProductPage() {
   const { slug = '' } = useParams();
+  const { getProductBySlug, loading } = useCatalog();
   const product = getProductBySlug(slug);
 
-  const { addItem } = useCart();
-  const { isFavorite, toggle } = useWishlist();
-  const { notify } = useToast();
-
-  const [quantity, setQuantity] = useState(1);
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
-    const initial: Record<string, string> = {};
-    for (const option of product?.options ?? []) {
-      if (option.values[0]) initial[option.label] = option.values[0];
-    }
-    return initial;
-  });
-
-  const related = useMemo(
-    () => (product ? getRelatedProducts(product, 4) : []),
-    [product],
-  );
-
   if (!product) {
+    // منتج أُضيف حديثًا من لوحة الإدارة قد لا يكون في النسخة المعروضة مؤقتًا —
+    // ننتظر وصول المنتجات الحية قبل أن نقول إنه غير موجود.
+    if (loading) return <ProductLoading />;
+
     return (
       <div className="container-page py-20">
         <Seo title="المنتج غير موجود" noIndex />
@@ -53,6 +41,47 @@ export default function ProductPage() {
       </div>
     );
   }
+
+  // المفتاح يعيد ضبط الكمية والخيارات عند الانتقال إلى منتج آخر
+  return <ProductDetails key={product.id} product={product} />;
+}
+
+function ProductLoading() {
+  return (
+    <div className="container-page py-10" role="status" aria-live="polite">
+      <span className="sr-only">جارٍ تحميل المنتج…</span>
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-12" aria-hidden="true">
+        <div className="skeleton aspect-square w-full rounded-2xl" />
+        <div className="space-y-4">
+          <div className="skeleton h-8 w-3/4" />
+          <div className="skeleton h-4 w-1/2" />
+          <div className="skeleton h-20 w-full" />
+          <div className="skeleton h-12 w-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductDetails({ product }: { product: Product }) {
+  const { getRelatedProducts } = useCatalog();
+  const { addItem } = useCart();
+  const { isFavorite, toggle } = useWishlist();
+  const { notify } = useToast();
+
+  const [quantity, setQuantity] = useState(1);
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
+    const initial: Record<string, string> = {};
+    for (const option of product.options ?? []) {
+      if (option.values[0]) initial[option.label] = option.values[0];
+    }
+    return initial;
+  });
+
+  const related = useMemo(
+    () => getRelatedProducts(product, 4),
+    [product, getRelatedProducts],
+  );
 
   const discount = discountPercent(product.price, product.oldPrice);
   const favorite = isFavorite(product.id);

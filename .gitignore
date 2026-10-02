@@ -28,3 +28,8 @@ temp/
 
 # Local Netlify folder
 .netlify
+
+# متغيرات البيئة — تحتوي مفاتيح وأسرارًا، يُمنع رفعها
+.env
+.env.local
+.env.*.local

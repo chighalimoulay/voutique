@@ -2,9 +2,15 @@ import type { Product } from '@/types';
 
 /**
  * ══════════════════════════════════════════════════════════════════
- *  منتجات متجر VOUTIQUE
+ *  منتجات متجر VOUTIQUE — النسخة الاحتياطية
  *
- *  ➕ لإضافة منتج جديد: انسخي أي عنصر من القائمة والصقيه، ثم غيّري:
+ *  ⭐ المنتجات تُدار الآن من لوحة الإدارة (/admin) وتُخزَّن في Supabase.
+ *  هذا الملف لم يعد المصدر الأساسي، بل:
+ *    1) نسخة احتياطية يعرضها المتجر تلقائيًا إن تعذّر الاتصال بـ Supabase.
+ *    2) المصدر الذي وُلِّد منه supabase/migrations/0002_seed_products.sql.
+ *  أي تعديل هنا لا يظهر في المتجر ما دام Supabase يعمل.
+ *
+ *  (الطريقة القديمة، للمرجع فقط) لإضافة منتج: انسخي أي عنصر والصقيه، ثم غيّري:
  *      id            معرّف فريد لا يتكرر (مثل 'p-031')
  *      name          اسم المنتج بالعربية
  *      slug          الرابط بالإنجليزية بحروف صغيرة وشرطات (يظهر في /product/slug)
@@ -18,7 +24,8 @@ import type { Product } from '@/types';
  *      '/images/products/اسم-الملف.jpg'
  *      إن لم توجد صورة، سيعرض الموقع صورة بديلة تلقائيًا.
  *
- *  ⚠ لا تحتاجين لتعديل أي مكوّن آخر — كل الصفحات تقرأ من هذا الملف.
+ *  ⚠ الصفحات تقرأ المنتجات عبر useCatalog() (src/store/useCatalog.ts)
+ *     وليس من هذا الملف مباشرة.
  * ══════════════════════════════════════════════════════════════════
  */
 export const products: Product[] = [
@@ -909,53 +916,3 @@ export function hasRealPhoto(product: Product): boolean {
 export function photosFirst(list: Product[]): Product[] {
   return [...list].sort((a, b) => Number(hasRealPhoto(b)) - Number(hasRealPhoto(a)));
 }
-
-const productsBySlug = new Map(products.map((product) => [product.slug, product]));
-const productsById = new Map(products.map((product) => [product.id, product]));
-
-export function getProductBySlug(slug: string): Product | undefined {
-  return productsBySlug.get(slug);
-}
-
-export function getProductById(id: string): Product | undefined {
-  return productsById.get(id);
-}
-
-/**
- * الأقسام المُنسَّقة على الصفحة الرئيسية (مختارة لكِ، الأكثر مبيعًا، وصلنا حديثًا)
- * تستبعد صور placeholder التوضيحية تمامًا بدل تأخيرها في الترتيب، حتى لا يظهر
- * أي رسم SVG بينما توجد صور حقيقية كافية للملء.
- */
-export function getFeaturedProducts(limit = 8): Product[] {
-  return products.filter((product) => product.featured && hasRealPhoto(product)).slice(0, limit);
-}
-
-export function getBestSellers(limit = 8): Product[] {
-  return products
-    .filter((product) => product.bestSeller && hasRealPhoto(product))
-    .slice(0, limit);
-}
-
-export function getNewArrivals(limit = 8): Product[] {
-  return products
-    .filter((product) => product.badge === 'new' && hasRealPhoto(product))
-    .slice(0, limit);
-}
-
-export function getByCategory(categorySlug: string): Product[] {
-  return photosFirst(products.filter((product) => product.category === categorySlug));
-}
-
-export function getRelatedProducts(product: Product, limit = 4): Product[] {
-  return photosFirst(
-    products.filter((item) => item.category === product.category && item.id !== product.id),
-  ).slice(0, limit);
-}
-
-/** أعلى سعر في الكتالوج — يُستخدم لضبط مرشّح السعر. */
-export const MAX_PRODUCT_PRICE = products.reduce(
-  (max, product) => Math.max(max, product.price),
-  0,
-);
-
-export const BRANDS = [...new Set(products.map((p) => p.brand).filter(Boolean))] as string[];

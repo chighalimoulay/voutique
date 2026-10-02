@@ -1,7 +1,7 @@
 import { useCallback, useMemo, type ReactNode } from 'react';
-import { getProductById } from '@/data/products';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import type { Product } from '@/types';
+import { useCatalog } from './useCatalog';
 import { WishlistContext, type WishlistContextValue } from './wishlist-context';
 
 const STORAGE_KEY = 'voutique:wishlist:v1';
@@ -12,6 +12,7 @@ function isStringArray(value: unknown): value is string[] {
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
   const [ids, setIds] = useLocalStorage<string[]>(STORAGE_KEY, [], isStringArray);
+  const { getProductById } = useCatalog();
 
   const isFavorite = useCallback((productId: string) => ids.includes(productId), [ids]);
 
@@ -43,7 +44,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       if (product) resolved.push(product);
     }
     return resolved;
-  }, [ids]);
+  }, [ids, getProductById]);
 
   const value = useMemo<WishlistContextValue>(
     () => ({

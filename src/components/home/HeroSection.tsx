@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Globe2, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SiteImage } from '@/components/SiteImage';
 import { ButtonLink } from '@/components/ui/Button';
+import { DEFAULT_HERO_IMAGE, HERO_IMAGE_KEY } from '@/config/siteImages';
 import { storeConfig } from '@/config/store';
 
 /**
@@ -96,14 +98,15 @@ function HeroVisual() {
       className="relative mx-auto w-full max-w-md lg:max-w-none"
     >
       <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-white/60 bg-white/40 shadow-lift backdrop-blur-sm">
-        <img
-          src="/images/voutique-hero-gift.jpg"
+        {/* قابلة للتغيير من لوحة الإدارة («صور المتجر») */}
+        <SiteImage
+          imageKey={HERO_IMAGE_KEY}
+          fallback={DEFAULT_HERO_IMAGE}
           alt="مجموعة هدايا VOUTIQUE — عطور وعلب مغلّفة"
           className="h-full w-full object-cover"
           loading="eager"
           decoding="async"
-          // React 18 لا يعرف الخاصية بصيغة camelCase، لذا نمرّرها بالاسم الفعلي في HTML
-          {...{ fetchpriority: 'high' }}
+          priority
         />
       </div>
 

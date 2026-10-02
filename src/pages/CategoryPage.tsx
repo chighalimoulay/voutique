@@ -3,16 +3,21 @@ import { useCallback, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ProductGrid } from '@/components/product/ProductGrid';
 import { Seo } from '@/components/Seo';
+import { SiteImage } from '@/components/SiteImage';
 import { FilterPanel } from '@/components/shop/FilterPanel';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { categoryImageKey } from '@/config/siteImages';
 import { getCategory } from '@/data/categories';
-import { getByCategory } from '@/data/products';
+import { useCatalog } from '@/store/useCatalog';
+import { useSiteImage } from '@/store/useSiteImages';
 import type { ShopFilters, SortKey } from '@/types';
 import { applyFilters, DEFAULT_FILTERS, SORT_OPTIONS } from '@/utils/search';
 
 export default function CategoryPage() {
   const { slug = '' } = useParams();
   const category = getCategory(slug);
+  const { getByCategory } = useCatalog();
+  const { src: categoryImage } = useSiteImage(categoryImageKey(slug), category?.image ?? '');
 
   const [filters, setFilters] = useState<ShopFilters>({
     ...DEFAULT_FILTERS,
@@ -27,7 +32,7 @@ export default function CategoryPage() {
     setFilters({ ...DEFAULT_FILTERS, category: slug });
   }, [slug]);
 
-  const categoryProducts = useMemo(() => getByCategory(slug), [slug]);
+  const categoryProducts = useMemo(() => getByCategory(slug), [getByCategory, slug]);
   const results = useMemo(
     () => applyFilters(categoryProducts, { ...filters, category: 'all' }),
     [categoryProducts, filters],
@@ -52,7 +57,7 @@ export default function CategoryPage() {
       <Seo
         title={category.name}
         description={category.description}
-        image={category.image}
+        image={categoryImage}
       />
 
       {/* رأس التصنيف */}
@@ -79,8 +84,9 @@ export default function CategoryPage() {
           </nav>
 
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <img
-              src={category.image}
+            <SiteImage
+              imageKey={categoryImageKey(category.slug)}
+              fallback={category.image}
               alt={category.name}
               loading="eager"
               className="h-24 w-24 rounded-2xl object-cover shadow-soft sm:h-28 sm:w-28"

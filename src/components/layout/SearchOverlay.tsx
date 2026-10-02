@@ -4,9 +4,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProductVisual } from '@/components/product/ProductVisual';
 import { getCategoryName } from '@/data/categories';
-import { products } from '@/data/products';
 import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useCatalog } from '@/store/useCatalog';
 import { searchProducts } from '@/utils/search';
 import { formatPrice } from '@/utils/format';
 
@@ -20,6 +20,7 @@ export function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const debounced = useDebounce(term, 180);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { products } = useCatalog();
 
   useBodyScrollLock(open);
 
@@ -46,7 +47,7 @@ export function SearchOverlay({ open, onClose }: SearchOverlayProps) {
   const results = useMemo(() => {
     if (debounced.trim().length < 2) return [];
     return searchProducts(products, debounced).slice(0, 6);
-  }, [debounced]);
+  }, [debounced, products]);
 
   function submit(event: React.FormEvent) {
     event.preventDefault();

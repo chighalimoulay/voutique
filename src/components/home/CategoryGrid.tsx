@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
+import { SiteImage } from '@/components/SiteImage';
+import { categoryImageKey } from '@/config/siteImages';
 import { categories } from '@/data/categories';
 import { resolveCategoryIcon } from '@/data/categoryIcons';
-import { getByCategory } from '@/data/products';
+import { useCatalog } from '@/store/useCatalog';
 
 export function CategoryGrid() {
+  const { getByCategory } = useCatalog();
+
   return (
     <section className="container-page py-14 sm:py-16" aria-labelledby="categories-title">
       <div className="mb-8 text-center">
@@ -27,8 +31,9 @@ export function CategoryGrid() {
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-mauve-100 bg-white shadow-soft transition-all duration-500 ease-silk hover:-translate-y-1 hover:shadow-lift"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-cream">
-                <img
-                  src={category.image}
+                <SiteImage
+                  imageKey={categoryImageKey(category.slug)}
+                  fallback={category.image}
                   alt={category.name}
                   loading="lazy"
                   decoding="async"
