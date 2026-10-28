@@ -8,6 +8,7 @@ import { AdminLayout } from './AdminLayout';
 import { LoginPage } from './pages/LoginPage';
 import { ProductFormPage } from './pages/ProductFormPage';
 import { ProductsPage } from './pages/ProductsPage';
+import { SalesPage } from './pages/SalesPage';
 import { SiteImagesPage } from './pages/SiteImagesPage';
 import { useAdminSession } from './useAdminSession';
 
@@ -72,6 +73,7 @@ export default function AdminApp() {
         <Route path="products/new" element={<ProductFormPage key="new" />} />
         <Route path="products/:id" element={<EditProductRoute />} />
         <Route path="site-images" element={<SiteImagesPage />} />
+        <Route path="sales" element={<SalesPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/admin" replace />} />
     </Routes>

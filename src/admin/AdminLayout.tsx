@@ -6,11 +6,17 @@ import { cn } from '@/utils/cn';
 import { signOut } from './adminApi';
 
 const SITE_IMAGES_PATH = '/admin/site-images';
+const SALES_PATH = '/admin/sales';
 
 const SECTIONS = [
   // «المنتجات» نشطة أيضًا داخل صفحات إضافة/تعديل منتج
-  { to: '/admin', label: 'المنتجات', isActive: (path: string) => !path.startsWith(SITE_IMAGES_PATH) },
+  {
+    to: '/admin',
+    label: 'المنتجات',
+    isActive: (path: string) => !path.startsWith(SITE_IMAGES_PATH) && !path.startsWith(SALES_PATH),
+  },
   { to: SITE_IMAGES_PATH, label: 'صور المتجر', isActive: (path: string) => path.startsWith(SITE_IMAGES_PATH) },
+  { to: SALES_PATH, label: 'المبيعات والأرباح', isActive: (path: string) => path.startsWith(SALES_PATH) },
 ];
 
 export function AdminLayout({ email }: { email: string }) {
